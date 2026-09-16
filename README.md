@@ -1,0 +1,2 @@
+# Operation-Threshold-Analysis-Credit-Risk-Division
+One Single Question from the Head of Credit Risk.We're approving loans on credit score and income verification, but nobody has checked whether size-of-loan versus- income is quietly doing more damage than either. I don't want a guess. I want a number."
