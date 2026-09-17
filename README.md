@@ -131,9 +131,9 @@ Lookup table of bank branches and the region each belongs to.
 | `BranchName` | string | Human-readable name of the branch. Casing is inconsistent in the source (e.g. a leading-space, lowercase entry). | `Bristol Branch` |
 | `Region` | string | Geographic region / city the branch serves. | `Bristol` |
 
-> **Row count (approx.):** [X rows]
-> **Date range:** [Jan 2025] – [Dec 2025]
-> **Key join / relationship:** [e.g., `branches.branch_id` → `loan.branch_Id`]
+> **Row count (approx.):** 10 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:** [e.g., `Branches.BranchID` → `Loan.BranchID`]
 
 ---
 
@@ -147,6 +147,9 @@ Lookup table of loan officers, the branch they work at, and their tenure.
 | `BranchID` | string | Branch the officer is assigned to; foreign key to `Branches_ref.BranchID`. | `BR007` |
 | `YearsExperience` | int | Number of years of experience the officer holds. | `12` |
 
+> **Row count (approx.):** 40 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:** [e.g., `Officers.OfficerID` → `Loan.OfficerID`]
 ---
 
 ### Dataset / Table: `Products_ref.csv`
@@ -158,6 +161,9 @@ Lookup table describing each loan product and its typical terms.
 | `TermRangeMonths` | string | Typical range of loan terms in months, stored as a hyphenated range (text, not numeric). | `24-60` |
 | `TypicalRateRange` | string | Typical interest-rate band for the product, stored as a percentage range (text, not numeric). | `6-12%` |
 
+> **Row count (approx.):** 4 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:** [e.g., `Products.ProductID` → `Loan.ProductID`]
 ---
 
 ### Dataset / Table: `Dim_Calendar.csv`
@@ -175,6 +181,9 @@ Date dimension table providing calendar attributes for time-based analysis (one 
 | `DayName` | string | Full name of the weekday. | `Sunday` |
 | `IsWeekend` | boolean | Flag indicating whether the date falls on a Saturday or Sunday. | `True` |
 
+> **Row count (approx.):** 1461 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:** [e.g., `Calendar.Date` → `Loan.DisbursedDate`]
 ---
 
 ### Dataset / Table: `Loans_raw.csv`
@@ -198,9 +207,12 @@ Raw loan-origination records — one row per disbursed loan. Contains customer, 
 | `TermMonths` | int | Length of the loan in months. | `35` |
 | `DisbursedDate` | string *(needs cleaning → date)* | Date the loan was paid out. Stored in mixed formats (`30/10/2024`, `2023-12-26`, `12 January 2024`), so it reads as text until standardised. | `2023-12-26` |
 
+> **Row count (approx.):** 20,000 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:**  `LoanID is the Primary Key that connects to keys in the Branch, Officers, Product tables`
 ---
 
-### Dataset / Table: `epayments_raw.csv`
+### Dataset / Table: `Repayments_raw.csv`
 Raw repayment schedule — one row per scheduled monthly payment per loan. Joins back to `Loans_raw` on `LoanID`.
 
 | Field Name | Data Type | Description | Example Value |
@@ -212,9 +224,9 @@ Raw repayment schedule — one row per scheduled monthly payment per loan. Joins
 | `PaymentStatus` | string | Status of the payment relative to its due date. | `On-Time` |
 
 
-> **Row count (approx.):** [X rows]
-> **Date range:** [Start] – [End]
-> **Key join / relationship:** [e.g., `orders.customer_id` → `customers.id`]
+> **Row count (approx.):** 240,000 Rows
+> **Date range:** Jan 2025 – Dec 2025
+> **Key join / relationship:** [e.g., `Repayment.LoanID` → `Loan.ProductID`]
 
 *Add additional table blocks as needed for multi-table projects.*
 
