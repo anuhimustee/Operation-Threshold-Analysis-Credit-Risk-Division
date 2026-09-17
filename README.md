@@ -31,13 +31,14 @@ One statement from the Head of Credit Risk set the tone for everything...
 The Head of Credit Risk Management had mentioned that they are approving loans on credit score and income verification, but nobody has checked whether size of loan version income is quietly doing more damage than either. They don't want a guess.. they need a data driven fact. My goal for this project is to verified the flagged signals that has been pointed out by the Credit Risk Team and to critically evaluate if these are the signal for debt burden, loan rate and repayment shortfalls
 
 These Flagged Signals includes;
--❗**Debt-To-Icome Skew**: Some loans may be sized far beyond what the customer's income supports
 
--❗**Immediate vs. Gradual Failure**: Defaults may cluster at first payment (underwriting failure) or later (reparyment stress)
+- ❗**Debt-To-Icome Skew**: Some loans may be sized far beyond what the customer's income supports
 
--❗**Product Concentration**: Certain loan types may carry disproportionately high debt burden ratios
+- ❗**Immediate vs. Gradual Failure**: Defaults may cluster at first payment (underwriting failure) or later (reparyment stress)
 
--❗**Branch/Officer Inconsistency**: Some branches or officers may be approving higher-burden loan than others
+- ❗**Product Concentration**: Certain loan types may carry disproportionately high debt burden ratios
+
+- ❗**Branch/Officer Inconsistency**: Some branches or officers may be approving higher-burden loan than others
 
 > 💡 *Every analysis decision in this project traces back to one of these objectives.*
 
@@ -51,11 +52,6 @@ The scope of this project involves a transactio-level data that captures differe
  
 
 ### Tools & Technologies
-
-<!--
-  List only what you actually used on this project.
-  This is not your skills section - it's the project's technical context.
--->
 
 | Category | Tool(s) Used |
 |----------|--------------|
@@ -118,13 +114,48 @@ The scope of this project involves a transactio-level data that captures differe
 ---
 
 
-## 6. Data Model & Schema
+## 5. Data Model & Schema
 
 📊 For a full description of every dataset and field, see the [Data Dictionary](data/DataDictionary.md).
 
 
+![Data Modelling in Excel](visuals/Data Model.png)
 
-## What the Data Shows
+
+## 6. Analysis & Metrics
+
+<!--
+  Explain what you measured and how - before you share what you found.
+
+  WHAT GOOD LOOKS LIKE:
+  Metric: "Customer Return Rate"
+  Definition: "Number of transactions flagged as returns divided by total
+               transactions, calculated at product-category and regional grain."
+  Why It Matters: "Return rate - not sales volume - was hypothesised to
+                  explain regional revenue gaps. This metric tests that hypothesis."
+
+  WHAT TO AVOID:
+  ❌ Defining a metric only in code: SUM(returns) / COUNT(transaction_id)
+     That's an implementation. Write the plain-language definition here.
+     Both belong in your project - the definition in the README,
+     the implementation in the code.
+-->
+
+### Analytical Approach
+
+[Describe how you approached the analysis. Were you exploring patterns? Testing a hypothesis? Building and validating a pipeline? Be honest about your method - exploratory work is valid, just call it that.]
+
+### Key Metrics Defined
+
+| Metric | Plain-Language Definition | Why It Matters |
+|--------|--------------------------|----------------|
+| `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
+| `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
+| `[Metric 3]` | [What it measures, in one sentence] | [What decision or question it answers] |
+
+---
+
+## 7. What the Data Shows - Key Insights
 
 - Debt burden predicts default. Default rate rises roughly 8x from Low DTI (**5.48%**) to Severe DTI (**43.50%**), and this number reverse-engineers correctly against the portfolio's total defaults — this is the finding to act on. (strong)
 
@@ -139,9 +170,7 @@ The scope of this project involves a transactio-level data that captures differe
 - The loan-officer “ranking” isn't real. Of 40 officers, only 3 have a default pattern that's statistically different from the portfolio average once sample size is accounted for. The rest of the spread you'd see in a sorted list is normal statistical noise, not a skill difference — don't act on it as a ranking. (weak — not supported)
 
 
-## Recommendations
-
-## Recommendations
+## 8. Recommendations
 
 - Tighten approval criteria above ~35% DTI (the High/Severe boundary) — this is where default risk and money at risk both concentrate. _Owner: Action Required_
 
@@ -152,4 +181,18 @@ The scope of this project involves a transactio-level data that captures differe
 - Use a missed first payment as a prompt for early borrower contact, not as grounds to flag the loan as high-risk. **_Owner: Action Required_**
 
 - Don't rank or act on individual loan officers from this data. Only 3 of 40 are statistically distinguishable from average. **_Owner: Action Required_**
+
+---
+
+## 9. Author
+
+**Anuhi Mustapha**
+Data Analyst
+
+- 🔗 [LinkedIn URL]
+- 💼 [Portfolio or GitHub profile URL]
+
+---
+
+> **Last updated: Sep 2025**
 
