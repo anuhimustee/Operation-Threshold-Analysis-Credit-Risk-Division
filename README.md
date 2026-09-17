@@ -121,7 +121,7 @@ The scope of this project involves a transactio-level data that captures differe
 📊 For a full description of every dataset and field, see the [Data Dictionary](data/DataDictionary.md).
 
 
-![Data Modelling in Excel](visuals/Data Model.png)
+!Data Modelling in Excel(visuals/DataModel.png)
 
 
 ## 6. Analysis & Metrics
