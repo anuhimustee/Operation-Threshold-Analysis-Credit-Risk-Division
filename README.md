@@ -13,10 +13,12 @@ Debt burden — how large a loan is relative to the borrower's income — turns 
 
 ## 1. Project Overview
 
-**Contextual Background:** Vantage Trust Bank operates 10 branches, offering Personal, SME, Auto, and Mortgage loans to retail and small business customers through a network of 40 loan officers. The credit team approves loans primarily on credit score and income verification, but has never systematically checked whether loan size relative to income predicts
+#### **Contextual Background:**
+Vantage Trust Bank operates 10 branches, offering Personal, SME, Auto, and Mortgage loans to retail and small business customers through a network of 40 loan officers. The credit team approves loans primarily on credit score and income verification, but has never systematically checked whether loan size relative to income predicts
 repayment failure.
 
-**The Incident:** The Head of Credit Risk pulled a routine sample of defaulted accounts for a write-off review and noticed something informally: a disproportionate number of the defaults looked "over-borrowed" relative to what the customer earned. No one has confirmed this with actual data. The Risk Committee wants to know, before the next lending cycle's approval criteria are set, whether debt burden actually predicts default — and whether high-burden borrowers fail immediately or gradually.
+#### **The Incident:**
+The Head of Credit Risk pulled a routine sample of defaulted accounts for a write-off review and noticed something informally: a disproportionate number of the defaults looked "over-borrowed" relative to what the customer earned. No one has confirmed this with actual data. The Risk Committee wants to know, before the next lending cycle's approval criteria are set, whether debt burden actually predicts default — and whether high-burden borrowers fail immediately or gradually.
 
 One statement from the Head of Credit Risk set the tone for everything...
 > "We're approving loans on credit score and income verification, but nobody has checked whether size-of-loan versus- income is quietly doing more damage than either. I don't want a guess. I want a number."
