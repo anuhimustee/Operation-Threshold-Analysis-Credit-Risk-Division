@@ -120,10 +120,7 @@ The scope of this project involves a transactio-level data that captures differe
 
 ## 6. Data Model & Schema
 
-
-
-
-
+📊 For a full description of every dataset and field, see the [Data Dictionary](data/DataDictionary.md).
 
 
 
