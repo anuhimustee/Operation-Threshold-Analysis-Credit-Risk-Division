@@ -123,34 +123,39 @@ The scope of this project involves a transactio-level data that captures differe
 
 ## 6. Analysis & Metrics
 
-<!--
-  Explain what you measured and how - before you share what you found.
-
-  WHAT GOOD LOOKS LIKE:
-  Metric: "Customer Return Rate"
-  Definition: "Number of transactions flagged as returns divided by total
-               transactions, calculated at product-category and regional grain."
-  Why It Matters: "Return rate - not sales volume - was hypothesised to
-                  explain regional revenue gaps. This metric tests that hypothesis."
-
-  WHAT TO AVOID:
-  ❌ Defining a metric only in code: SUM(returns) / COUNT(transaction_id)
-     That's an implementation. Write the plain-language definition here.
-     Both belong in your project - the definition in the README,
-     the implementation in the code.
--->
-
 ### Analytical Approach
 
-[Describe how you approached the analysis. Were you exploring patterns? Testing a hypothesis? Building and validating a pipeline? Be honest about your method - exploratory work is valid, just call it that.]
+The starting point was an informal observation from the Head of Credit Risk: many defaulted accounts looked "over-borrowed" for what the customer earned. Nobody had checked it with data, so I turned it into two hypotheses I could test:
+
+1. **H1: Debt burden predicts default.** Loans with a higher Debt-to-Income (DTI) ratio default at a higher rate than loans with a lower one.
+2. **H2: High-burden loans fail early.** If loans are being sized beyond what customers can afford, high-burden defaults should cluster at the first payment (an underwriting failure) rather than build up over the 12 months (repayment stress).
+
+I worked in four stages:
+
+1. **Clean and model.** Cleaned the raw loan and repayment extracts in Power Query and built a star schema in Power Pivot. Every step is documented in [Cleaning and Transformation Steps](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/tree/main/data/analysed_data).
+2. **Set the baseline.** Total loans, total value and the overall default rate, so every later figure has something to be compared with.
+3. **Test the hypotheses.** Calculated DTI for every loan, grouped it into four risk bands, and compared the default rate and first-payment default rate across bands.
+4. **Locate the risk.** Broke the same measures down by product, branch and officer to see where high-burden, high-default lending is concentrated.
+
+**What this analysis does and does not show**
+
+- It compares default rates across groups. It can show whether higher debt burden goes together with more default; it cannot prove that DTI *causes* default, and it is not a predictive model.
+- 3% of loans (600) use a sector-median income in place of a missing value, so their DTI is an estimate.
+- DTI here covers **this loan only**. The data has no record of a customer's other debts, so true total debt burden may be higher.
 
 ### Key Metrics Defined
 
-| Metric | Plain-Language Definition | Why It Matters |
-|--------|--------------------------|----------------|
-| `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 3]` | [What it measures, in one sentence] | [What decision or question it answers] |
+| Metric | Definition | Why it matters |
+| --- | --- | --- |
+| Total Loans | Count of unique `LoanID`s (20,000) | Size of the portfolio; the denominator for every rate |
+| Total Loan Value | Sum of `LoanAmount` (£) | The bank's exposure |
+| Debt-to-Income (DTI) | `MonthlyInstallment ÷ MonthlyIncome`, per loan | Share of monthly income that goes to this loan's repayment; the core measure of debt burden |
+| DTI Band | Low: < 0.20 · Moderate: 0.20 to < 0.35 · High: 0.35 to < 0.50 · Severe: ≥ 0.50 | Turns a ratio into groups the Risk Committee can compare and set policy on |
+| Defaulted Loan | A loan with at least one Missed payment in the 12-month repayment window | The outcome being tested |
+| Default Rate | Defaulted loans ÷ Total Loans | Compared across DTI bands to test H1 |
+| First-Payment Default (FPD) | A loan whose month-1 payment status is **Missed** | Points to an underwriting failure: the loan was unaffordable from the start |
+| FPD Rate | FPD loans ÷ Total Loans | Compared across DTI bands to test H2 |
+| FPD Share of Defaults | FPD loans ÷ Defaulted loans | Answers "immediate or gradual?": a high share means defaults happen at the first payment, a low share means they build up over time |
 
 ---
 
@@ -186,12 +191,12 @@ The scope of this project involves a transactio-level data that captures differe
 ## 9. Author
 
 **Anuhi Mustapha**
-Data Analyst
+Data Analyst/Scientist
 
-- 🔗 [LinkedIn URL]
-- 💼 [Portfolio or GitHub profile URL]
+- 🔗[LinkedIn](https://www.linkedin.com/in/anuhi-mustapha/)
+- 💼[Medium Article link](https://medium.com/@helloanuhi/operation-threshold-debt-burden-risk-first-payment-default-analysis-08869f9852d3)
 
 ---
 
-> **Last updated: Sep 2025**
+> **Last updated: Nove 2026**
 
