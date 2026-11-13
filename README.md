@@ -105,13 +105,10 @@ The scope of this project involves a transactio-level data that captures differe
 
 2. **Ingestion:** The tool of choice for this project is purely Microsoft Excel. Utilizing the power of Power Query using the **Get Data** features, I was able to bring in the data via this whichis where both the cleaning and transfromation was done.
    
-5. **Cleaning:** SIX dataset... Any issues? Of course. First we dig into the Loan table, Checked for duplicates and there is! 100 duplicates, using hthe Remove features.. It brough everything down to 20,000.
+3. **Cleaning:** For both cleaning and transformation steps, please refer to a detailed and most comprehensive process involves [Cleaning & Transformation Steps](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/tree/main/data/analysed_data)
    
-7. **Transformation:** [What new fields, aggregations, or structures did you create?]
+4. **Analysis:** [Fully Analysis in Excel](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/data/analysed_data/Operation%20Thershold%20Excel%20Projectv.xlsx)
 
-9. **Analysis:** [What methods - statistical, visual, query-based, model-based?]
-
-11. **Output:** [What form do the results take?]
 
 ---
 
