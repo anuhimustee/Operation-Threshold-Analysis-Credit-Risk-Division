@@ -54,9 +54,6 @@ This table needed the most work, because both inputs to the DTI ratio (income an
 | **Action** | Selected `LoanID` → Remove Duplicates. |
 | **Result** | 20,000 rows, one per loan. |
 
-| Before | After |
-| --- | --- |
-| ![Before: 20,100 rows](images/cleaning/01_duplicates_before.png) | ![After: 20,000 rows](images/cleaning/01_duplicates_after.png) |
 
 ### Step 2: Standardise the text columns
 
@@ -73,7 +70,7 @@ This table needed the most work, because both inputs to the DTI ratio (income an
 
 | Before | After |
 | --- | --- |
-| ![Before: EmploymentSector with 12 values](images/cleaning/02_text_before.png) | ![After: EmploymentSector with 4 values](images/cleaning/02_text_after.png) |
+| ![Before: EmploymentSector with 12 values](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/ES%20Cleaning%20Before.png) | ![After: EmploymentSector with 4 values](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/ES%20Cleaning%20After.png) |
 
 ### Step 3: Fill the missing monthly income
 
@@ -108,9 +105,7 @@ if [MonthlyIncome] = null then [Median Salary] else [MonthlyIncome]
 
 **Result:** 0 missing incomes, and the 19,400 real incomes are untouched.
 
-| Before | After |
-| --- | --- |
-| ![Before: MonthlyIncome 3% empty](images/cleaning/03_income_before.png) | ![After: MonthlyIncome 0% empty](images/cleaning/03_income_after.png) |
+![GroupBy Processcess](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/GroupByMedian.png)
 
 ### Step 4: Convert LoanAmount from text to number
 
@@ -121,9 +116,12 @@ if [MonthlyIncome] = null then [Median Salary] else [MonthlyIncome]
 | **Action** | Replaced `£` with nothing → replaced `,` with nothing → changed type to Decimal Number. |
 | **Result** | A fully numeric `LoanAmount` column. |
 
-| Before | After |
-| --- | --- |
-| ![Before: LoanAmount as text](images/cleaning/04_amount_before.png) | ![After: LoanAmount as number](images/cleaning/04_amount_after.png) |
+![LoanAmount Issue](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/LoanAmount%20Cleaning.png)
+
+![Removing the `£`](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/LoanAmountCleaning%201.png)
+
+![Removing the comma](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/LoanAmountCleaning%202.png)
+
 
 ### Step 5: Fix the three date formats in DisbursedDate
 
@@ -149,7 +147,7 @@ else Date.FromText([DisbursedDate], [Culture="en-GB"])
 
 | Before | After |
 | --- | --- |
-| ![Before: mixed date formats](images/cleaning/05_dates_before.png) | ![After: one Date column](images/cleaning/05_dates_after.png) |
+| ![Before: mixed date formats](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/DateCleaning%201.png) | ![After: one Date column](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/DateCleaning%202.png) |
 
 ### Step 6: Bring in the monthly installment
 
@@ -168,7 +166,7 @@ else Date.FromText([DisbursedDate], [Culture="en-GB"])
 
 | Before | After |
 | --- | --- |
-| ![Before: no installment column](images/cleaning/06_installment_before.png) | ![After: MonthlyInstallment added](images/cleaning/06_installment_after.png) |
+| ![Before: no installment column](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/LoanInstallmentPayment.png) | ![After: MonthlyInstallment added](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/LoanInstallmentPayment2.png) |
 
 ### Step 7: Replace customer details with a CustomerID
 
@@ -178,7 +176,7 @@ else Date.FromText([DisbursedDate], [Culture="en-GB"])
 
 | Before | After |
 | --- | --- |
-| ![Before: customer columns in Fact_Loans](images/cleaning/07_customerid_before.png) | ![After: CustomerID only](images/cleaning/07_customerid_after.png) |
+| ![During Merge Operation on the Fact_Loans](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/CustomerMergeOps.png) | ![After: CustomerID only](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/CustomerMergeAfter.png) |
 
 ### Step 8: Calculate the Debt-to-Income ratio
 
@@ -190,9 +188,6 @@ Added a custom column, `DTI` (Decimal Number):
 
 **Result:** the median loan takes **19.6%** of the customer's monthly income. The highest takes **2.38 times** their income.
 
-| Before | After |
-| --- | --- |
-| ![Before: custom column formula](images/cleaning/08_dti_before.png) | ![After: DTI column](images/cleaning/08_dti_after.png) |
 
 ### Step 9: Group DTI into risk bands
 
@@ -209,9 +204,7 @@ Added a custom column, `DTI` (Decimal Number):
 
 **Result:** about one loan in five (4,043) takes 35% or more of the customer's monthly income. These are the loans the analysis tests for higher default.
 
-| Before | After |
-| --- | --- |
-| ![Before: conditional column rules](images/cleaning/09_dtiband_before.png) | ![After: DTI Band column](images/cleaning/09_dtiband_after.png) |
+![Using Conditional Column](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/DTI%20Bands.png)
 
 ---
 
@@ -228,9 +221,6 @@ Added a custom column, `DTI` (Decimal Number):
 | **Action** | Capitalize Each Word → Trim. |
 | **Result** | 3 statuses: On-Time (205,254), Late (17,694), Missed (17,052). |
 
-| Before | After |
-| --- | --- |
-| ![Before: 9 status values](images/cleaning/10_status_before.png) | ![After: 3 status values](images/cleaning/10_status_after.png) |
 
 ### Step 2: Fill blank AmountPaid on missed payments
 
@@ -238,11 +228,6 @@ Added a custom column, `DTI` (Decimal Number):
 
 **Why it matters:** a blank is ignored by SUM and AVERAGE, so the average amount paid would look healthier than it is. For a missed payment, the true amount paid is zero.
 
-**Action:** added a custom column and replaced the original:
-
-```m
-if [PaymentStatus] = "Missed" and [AmountPaid] = null then 0 else [AmountPaid]
-```
 
 I checked the status as well as the blank on purpose. A blank on an On-Time or Late row would mean something different, and it should not be quietly set to zero.
 
@@ -250,8 +235,13 @@ I checked the status as well as the blank on purpose. A blank on an On-Time or L
 
 | Before | After |
 | --- | --- |
-| ![Before: nulls on Missed rows](images/cleaning/11_amountpaid_before.png) | ![After: 0 on Missed rows](images/cleaning/11_amountpaid_after.png) |
+| ![Overview Of Data Issue](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/AmountPaidNullCleaning.png) | ![Deeper Dive](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/AmountPaidNullCleaning%202.png) |
 
+**Action:** added a custom column and replaced the original:
+
+```m
+if [PaymentStatus] = "Missed" and [AmountPaid] = null then 0 else [AmountPaid]
+```
 ---
 
 ## Dimension tables
@@ -267,13 +257,10 @@ The dimensions describe the *who, what, where and when* of each loan. Most refer
 3. Treated **CustomerName + Age + Gender** as a composite key (the source has no customer ID).
 4. Removed duplicates on that composite key.
 5. Added an index column starting at 1 and named it `CustomerID` (primary key).
-6. Merged `CustomerID` back into Fact_Loans on the same three columns ([Fact_Loans Step 7](#step-7-replace-customer-details-with-a-customerid)).
+6. Merged `CustomerID` back into Fact_Loans on the same three columns
 
 **Result:** 18,916 unique customers from 20,000 loans; 1,043 customers hold more than one loan.
 
-| Before | After |
-| --- | --- |
-| ![Before: customer columns in loans](images/cleaning/12_customers_before.png) | ![After: Dim_Customers](images/cleaning/12_customers_after.png) |
 
 ### Dim_Products
 
@@ -288,7 +275,7 @@ The dimensions describe the *who, what, where and when* of each loan. Most refer
 
 | Before | After |
 | --- | --- |
-| ![Before: generic headers](images/cleaning/13_products_before.png) | ![After: Dim_Products with ProductID](images/cleaning/13_products_after.png) |
+| ![Before: generic headers](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/ProductPK%20Before.png) | ![After: Dim_Products with ProductID](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/ProductPK.png) |
 
 ### Dim_Branches
 
@@ -300,7 +287,7 @@ The dimensions describe the *who, what, where and when* of each loan. Most refer
 
 | Before | After |
 | --- | --- |
-| ![Before: " manchester branch"](images/cleaning/14_branches_before.png) | ![After: "Manchester Branch"](images/cleaning/14_branches_after.png) |
+| ![Before: " manchester branch"](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/Before%20BranchClean.png) | ![After: "Manchester Branch"](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/AfterBranchClean.png) |
 
 ### Dim_Officers
 
@@ -310,15 +297,10 @@ The dimensions describe the *who, what, where and when* of each loan. Most refer
 | **Action** | Capitalize Each Word → Trim on `OfficerName`. |
 | **Result** | 40 officer names in one format. |
 
-| Before | After |
-| --- | --- |
-| ![Before: "FATIMA SHEIKH"](images/cleaning/15_officers_before.png) | ![After: "Fatima Sheikh"](images/cleaning/15_officers_after.png) |
 
 ### Dim_Calendar
 
 Already clean: 1,461 days from 1 Jan 2023 to 31 Dec 2026, no blanks, no duplicate dates, covering every disbursement date. I only set the data types so it can join to `DisbursedDate`.
-
-![Dim_Calendar with data types set](images/cleaning/16_calendar.png)
 
 ---
 
@@ -336,16 +318,8 @@ Six raw files became seven clean tables, each joined by a single key. Two helper
 | Dim_Officers | 40 → 40 | 1 officer name fixed |
 | Dim_Calendar | 1,461 → 1,461 | Data types set |
 
-```mermaid
-flowchart LR
-    C[Dim_Customers<br/>CustomerID] --> F
-    P[Dim_Products<br/>ProductID] --> F
-    D[Dim_Calendar<br/>Date] --> F
-    B[Dim_Branches<br/>BranchID] --> F
-    O[Dim_Officers<br/>OfficerID] --> F
-    F[(Fact_Loans<br/>20,000 loans<br/>DTI, DTI Band)] --> R[(Fact_Repayment<br/>240,000 payments)]
-```
 
-![Power Pivot data model](images/cleaning/17_data_model.png)
+
+![Power Pivot data model](https://github.com/anuhimustee/Operation-Threshold-Analysis-Credit-Risk-Division/blob/main/visuals/screenshots/Final%20Model.png)
 
 Every dimension filters Fact_Loans through one key, so a slicer on branch, officer, product or month flows straight through to the DTI and default figures.
