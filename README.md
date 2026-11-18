@@ -2,6 +2,7 @@
 
 > Disclaimer: Vantage Trust Bank does not exist. Every borrower, branch, and loan officer named in this piece is a synthetic name attached to synthetic data that simulated a real-li work scenario for a personal analytics case study project. Every figure in this article is real in the sense that I calculated it correctly from data. Nothing else about it is real. Think of it as a flight simulator for credit risk analytics: the instruments work, the sky doesn't exist.
 
+
 ![VintageBank Snapshot](visuals/VintageBank%20Snapshot.png)
 
 One Statement from the Head of Credit Risk set the tone for everything...
@@ -190,13 +191,13 @@ I worked in four stages:
 
 ## 9. Author
 
-**Anuhi Mustapha**
-Data Analyst/Scientist
+**Sir Mustee**
+Data Analyst • Logistics Analyst • Supply Chain Analyst
 
 - 🔗[LinkedIn](https://www.linkedin.com/in/anuhi-mustapha/)
 - 💼[Medium Article link](https://medium.com/@helloanuhi/operation-threshold-debt-burden-risk-first-payment-default-analysis-08869f9852d3)
 
 ---
 
-> **Last updated: Nove 2026**
+> **Last updated: Nov 2026**
 
