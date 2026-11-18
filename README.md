@@ -199,5 +199,5 @@ Data Analyst • Logistics Analyst • Supply Chain Analyst
 
 ---
 
-> **Last updated: Nov 2026**
+> ***Last updated: Nov 2026***
 
